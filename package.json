@@ -1,0 +1,25 @@
+{
+  "name": "sharp-iqa",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "description": "Image quality assessment utility for sharp. Now only MSE and PSNR.",
+  "homepage": "https://github.com/ideamans/node-sharp-iqa",
+  "scripts": {
+    "test": "ava-ts -v test/**/test-*.ts",
+    "watch": "ava-ts -vw test/**/test-*.ts",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^12.12.16",
+    "@types/sharp": "^0.23.1",
+    "ava": "^2.4.0",
+    "ava-ts": "^0.25.2",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "sharp": "^0.23.4"
+  }
+}
