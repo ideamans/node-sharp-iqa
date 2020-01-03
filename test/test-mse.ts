@@ -50,3 +50,19 @@ test('Compare png32 and gray(same)', async t => {
   )
   t.is(mse, 0.625)
 })
+
+test('Compare png8 and png8', async t => {
+  const mse = await computeMse(
+    Path.join(__dirname, 'sample/white2x2-png8.png'),
+    Path.join(__dirname, 'sample/white2x2-png8.png')
+  )
+  t.is(mse, 0)
+})
+
+test('Compare png24 and png24', async t => {
+  const mse = await computeMse(
+    Path.join(__dirname, 'sample/white2x2-black1x1-png24.png'),
+    Path.join(__dirname, 'sample/white2x2-black1x1-png24.png')
+  )
+  t.is(mse, 0)
+})

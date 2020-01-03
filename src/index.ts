@@ -24,11 +24,11 @@ export async function mse(img0: Sharp.Sharp, img1: Sharp.Sharp): Promise<number>
   let se = 0
   for (let p = 0; p < pixels; p++) {
     const offset0 = info0.channels * p,
-      offset1 = info0.channels * p
+      offset1 = info1.channels * p
 
     for (let o = 0; o < 3; o++) {
       const v0 = data0[offset0 + o] || 0,
-        v1 = data1[offset1 + 0] || 0
+        v1 = data1[offset1 + o] || 0
       se += (v0 - v1) * (v0 - v1)
     }
     if (channels == 4) {
