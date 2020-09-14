@@ -45,3 +45,5 @@ export async function psnr(img0: Sharp.Sharp, img1: Sharp.Sharp): Promise<number
   const mseValue = await mse(img0, img1)
   return 10 * Math.log10(1 / mseValue)
 }
+
+export const sharp = Sharp

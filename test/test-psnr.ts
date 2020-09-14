@@ -1,5 +1,4 @@
 import * as Iqa from '../src'
-import Sharp from 'sharp'
 import Path from 'path'
 
 import anyTest, { TestInterface } from 'ava'
@@ -14,7 +13,7 @@ const test = anyTest as TestInterface<{mycontext: any}>
 // })
 
 async function computePsnr(path0: string, path1: string) {
-  const img0 = Sharp(path0), img1 = Sharp(path1)
+  const img0 = Iqa.sharp(path0), img1 = Iqa.sharp(path1)
   const psnr = await Iqa.psnr(img0, img1)
   return psnr
 }

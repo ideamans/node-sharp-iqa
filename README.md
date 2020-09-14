@@ -9,11 +9,13 @@ Image quality assessment utility for [sharp](https://www.npmjs.com/package/sharp
 
 # Sample
 
+Use exported `SharpIQA.sharp` because different `sharp` version maybe get segmentation fault.
+
 ```js
 const SharpIQA = require('sharp-iqa')
 
 (async() {
-  const psnr = await SharpIQA.psnr(Sharp('path/image1.png'), Sharp('path/image2.png'))
+  const psnr = await SharpIQA.psnr(SharpIQA.sharp('path/image1.png'), SharpIQA.sharp('path/image2.png'))
   console.log(psnr)
 })()
 ```
