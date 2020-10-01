@@ -1,6 +1,6 @@
 {
   "name": "sharp-iqa",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/index.js",
   "description": "Image quality assessment utility for sharp. Now only MSE and PSNR.",
   "homepage": "https://github.com/ideamans/node-sharp-iqa",
@@ -20,6 +20,6 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
-    "sharp": "^0.23.4"
+    "sharp": "^0.26.0"
   }
 }
