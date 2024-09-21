@@ -82,3 +82,4 @@ typings/
 .dynamodb/
 
 dist
+tsconfig.tsbuildinfo

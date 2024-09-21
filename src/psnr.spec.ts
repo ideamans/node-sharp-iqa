@@ -1,0 +1,38 @@
+import test from 'ava'
+
+import * as Iqa from './index'
+
+// test('rgba', async t => {
+//   const img = Sharp('testdata/rgba2x2.png'))
+//   const { data, info } = await img.raw().toBuffer({ resolveWithObject: true })
+//   console.log(info)
+//   console.log(data)
+//   t.pass()
+// })
+
+async function computePsnr(path0: string, path1: string) {
+  const img0 = Iqa.sharp(path0),
+    img1 = Iqa.sharp(path1)
+  const psnr = await Iqa.psnr(img0, img1)
+  return psnr
+}
+
+test('Compare png8 and png24', async (t) => {
+  const psnr = await computePsnr('testdata/white2x2-png8.png', 'testdata/white2x2-black1x1-png24.png')
+  t.is(psnr, 6.020599913279624)
+})
+
+test('Compare png8 and gray', async (t) => {
+  const psnr = await computePsnr('testdata/white2x2-png8.png', 'testdata/white2x2-black1x1-gray.png')
+  t.is(psnr, 6.020599913279624)
+})
+
+test('Compare png24 and gray(same)', async (t) => {
+  const psnr = await computePsnr('testdata/white2x2-black1x1-png24.png', 'testdata/white2x2-black1x1-gray.png')
+  t.is(psnr, Infinity)
+})
+
+test('Compare png32 and gray(same)', async (t) => {
+  const psnr = await computePsnr('testdata/rgba2x2.png', 'testdata/white2x2-black1x1-gray.png')
+  t.is(psnr, 2.041199826559248)
+})

@@ -1,0 +1,48 @@
+import test from 'ava'
+
+import * as Iqa from './index'
+
+// test('rgba', async t => {
+//   const img = Sharp('testdata/rgba2x2.png'))
+//   const { data, info } = await img.raw().toBuffer({ resolveWithObject: true })
+//   console.log(info)
+//   console.log(data)
+//   t.pass()
+// })
+
+async function computeMse(path0: string, path1: string) {
+  const img0 = Iqa.sharp(path0),
+    img1 = Iqa.sharp(path1)
+  const mse = await Iqa.mse(img0, img1)
+  return mse
+}
+
+test('Compare png8 and png24', async (t) => {
+  const mse = await computeMse('testdata/white2x2-png8.png', 'testdata/white2x2-black1x1-png24.png')
+  t.is(mse, 0.25)
+})
+
+test('Compare png8 and gray', async (t) => {
+  const mse = await computeMse('testdata/white2x2-png8.png', 'testdata/white2x2-black1x1-gray.png')
+  t.is(mse, 0.25)
+})
+
+test('Compare png24 and gray(same)', async (t) => {
+  const mse = await computeMse('testdata/white2x2-black1x1-png24.png', 'testdata/white2x2-black1x1-gray.png')
+  t.is(mse, 0)
+})
+
+test('Compare png32 and gray(same)', async (t) => {
+  const mse = await computeMse('testdata/rgba2x2.png', 'testdata/white2x2-black1x1-gray.png')
+  t.is(mse, 0.625)
+})
+
+test('Compare png8 and png8', async (t) => {
+  const mse = await computeMse('testdata/white2x2-png8.png', 'testdata/white2x2-png8.png')
+  t.is(mse, 0)
+})
+
+test('Compare png24 and png24', async (t) => {
+  const mse = await computeMse('testdata/white2x2-black1x1-png24.png', 'testdata/white2x2-black1x1-png24.png')
+  t.is(mse, 0)
+})
